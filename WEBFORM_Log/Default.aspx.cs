@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace HTTPBASE
 {
@@ -17,6 +12,9 @@ namespace HTTPBASE
         int[] ID = new int[5];
         public void Page_Load(object sender, EventArgs e)
         {
+            //初始化
+            Session["query_name"] = "";
+            Session["query_title"] = "";
             GetPageCount();  // 取得資料筆數
             GridView1.VirtualItemCount = num;
 
@@ -66,47 +64,22 @@ namespace HTTPBASE
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DataBaseConnection"].ToString();
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string queryString = "";
+                    string queryString = " select * from Employees where 1=1 ";
+                    if (Session["query_name"] != null)
+                    {
+                        queryString += " and EmployeeName like @query_name ";
+                    }
+                    if (Session["query_title"] != null)
+                    {
+                        queryString += " and Title like @query_title ";
+                    }
+                    queryString += "order by EmployeeID offset @sid rows fetch next 5 rows only ";
+
                     SqlCommand command = new SqlCommand(queryString, connection);
-                    if (Session["query_name"] != null || Session["query_title"] != null)
-                    {
-                        switch (Convert.ToInt32(Session["flag"]))
-                        {
-                            case 0: //查詢姓名
-                                queryString = " select * from Employees where EmployeeName like @query_name " +
-                                              "order by EmployeeID offset @sid rows fetch next 5 rows only";
-                                command = new SqlCommand(queryString, connection);
-                                command.Parameters.AddWithValue("@sid", sid);
-                                command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
-                                Response.Write(Session["query_name"]);
-                                //  TxtQueryName.Text = Session["query_name"].ToString();
-                                break;
-                            case 1: //查詢姓名+職稱
-                                queryString = " select * from Employees where EmployeeName like @query_name and Title like @query_title " +
-                                              "order by EmployeeID offset @sid rows fetch next 5 rows only";
-                                command = new SqlCommand(queryString, connection);
-                                command.Parameters.AddWithValue("@sid", sid);
-                                command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
-                                command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
-                                //   TxtQueryName.Text = Session["query_name"].ToString();
-                                //  TxtQueryTitle.Text = Session["query_title"].ToString();
-                                break;
-                            case 2: //查詢職稱
-                                queryString = " select * from Employees where Title like @query_title " +
-                                              "order by EmployeeID offset @sid rows fetch next 5 rows only";
-                                command = new SqlCommand(queryString, connection);
-                                command.Parameters.AddWithValue("@sid", sid);
-                                command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
-                                //  TxtQueryTitle.Text = Session["query_title"].ToString();
-                                break;
-                        }
-                    }
-                    else //全部資料
-                    {
-                        queryString = " select * from Employees order by EmployeeID offset @sid rows fetch next 5 rows only";
-                        command = new SqlCommand(queryString, connection);
-                        command.Parameters.AddWithValue("@sid", sid);
-                    }
+                    command.Parameters.AddWithValue("@sid", sid);
+                    command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
+                    command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
+
                     try
                     {
                         connection.Open();
@@ -236,43 +209,22 @@ namespace HTTPBASE
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DataBaseConnection"].ToString();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string queryString = "";
+                string queryString = " select EmployeeName,Title,BirthDate,Address,Salary from Employees where 1=1 ";
+                if (Session["query_name"] != null)
+                {
+                    queryString += " and EmployeeName like @query_name ";
+                }
+                if (Session["query_title"] != null)
+                {
+                    queryString += " and Title like @query_title ";
+                }
+                queryString += "order by EmployeeID offset @sid rows fetch next 5 rows only ";
+
                 SqlCommand command = new SqlCommand(queryString, connection);
-                if (Session["query_name"] != null || Session["query_title"] != null)
-                {
-                    switch (Convert.ToInt32(Session["flag"]))
-                    {
-                        case 0: //查詢姓名
-                            queryString = " select EmployeeName,Title,BirthDate,Address,Salary from Employees where EmployeeName like @query_name " +
-                                          "order by EmployeeID offset @sid rows fetch next 5 rows only";
-                            command = new SqlCommand(queryString, connection);
-                            command.Parameters.AddWithValue("@sid", sid);
-                            command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
-                            Response.Write(Session["query_name"]);
-                            break;
-                        case 1: //查詢姓名+職稱
-                            queryString = " select EmployeeName,Title,BirthDate,Address,Salary from Employees where EmployeeName like @query_name and Title like @query_title " +
-                                          "order by EmployeeID offset @sid rows fetch next 5 rows only";
-                            command = new SqlCommand(queryString, connection);
-                            command.Parameters.AddWithValue("@sid", sid);
-                            command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
-                            command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
-                            break;
-                        case 2: //查詢職稱
-                            queryString = " select EmployeeName,Title,BirthDate,Address,Salary from Employees where Title like @query_title " +
-                                          "order by EmployeeID offset @sid rows fetch next 5 rows only";
-                            command = new SqlCommand(queryString, connection);
-                            command.Parameters.AddWithValue("@sid", sid);
-                            command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
-                            break;
-                    }
-                }
-                else //全部資料
-                {
-                    queryString = " select EmployeeName,Title,BirthDate,Address,Salary from Employees order by EmployeeID offset @sid rows fetch next 5 rows only";
-                    command = new SqlCommand(queryString, connection);
-                    command.Parameters.AddWithValue("@sid", sid);
-                }
+                command.Parameters.AddWithValue("@sid", sid);
+                command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
+                command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
+
                 try
                 {
                     connection.Open();
@@ -329,35 +281,20 @@ namespace HTTPBASE
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string queryString = "";
+                    string queryString = " select count (*) from Employees where 1=1 ";
+                    if (Session["query_name"] != null)
+                    {
+                        queryString += " and EmployeeName like @query_name ";
+                    }
+                    if (Session["query_title"] != null)
+                    {
+                        queryString += " and Title like @query_title ";
+                    }
+
                     SqlCommand command = new SqlCommand(queryString, connection);
-                    if (Session["query_name"] != null || Session["query_title"] != null)
-                    {
-                        switch (Convert.ToInt32(Session["flag"]))
-                        {
-                            case 0: //查詢姓名
-                                queryString = " select count (*) from Employees where EmployeeName like @query_name ";
-                                command = new SqlCommand(queryString, connection);
-                                command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
-                                break;
-                            case 1: //查詢姓名+職稱
-                                queryString = " select count (*) from Employees where EmployeeName like @query_name and Title like @query_title ";
-                                command = new SqlCommand(queryString, connection);
-                                command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
-                                command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
-                                break;
-                            case 2: //查詢職稱
-                                queryString = " select count (*) from Employees where Title like @query_title ";
-                                command = new SqlCommand(queryString, connection);
-                                command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
-                                break;
-                        }
-                    }
-                    else //全部資料
-                    {
-                        queryString = " select count (*) from Employees ";
-                        command = new SqlCommand(queryString, connection);
-                    }
+                    command.Parameters.AddWithValue("@query_name", "%" + Session["query_name"].ToString() + "%");
+                    command.Parameters.AddWithValue("@query_title", "%" + Session["query_title"].ToString() + "%");
+                    
                     try
                     {
                         connection.Open();
