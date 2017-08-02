@@ -1,0 +1,16 @@
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\HTTPBASE.dll.config
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\HTTPBASE.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\HTTPBASE.pdb
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\EntityFramework.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\EntityFramework.SqlServer.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\System.Net.Http.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\System.Net.Http.WebRequest.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\System.Net.Http.xml
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\System.Net.Http.WebRequest.xml
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\EntityFramework.xml
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\EntityFramework.SqlServer.xml
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\zh-Hant\EntityFramework.resources.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\obj\Release\WEBFORM.csprojResolveAssemblyReference.cache
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\obj\Release\HTTPBASE.dll
+D:\training\程式範本檔(含資料庫)\WEBFORM\HTTPBASE\obj\Release\HTTPBASE.pdb

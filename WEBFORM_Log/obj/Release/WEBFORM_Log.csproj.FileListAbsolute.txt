@@ -1,0 +1,16 @@
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\HTTPBASE.dll.config
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\HTTPBASE.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\HTTPBASE.pdb
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\EntityFramework.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\EntityFramework.SqlServer.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\System.Net.Http.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\System.Net.Http.WebRequest.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\System.Net.Http.xml
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\System.Net.Http.WebRequest.xml
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\EntityFramework.xml
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\EntityFramework.SqlServer.xml
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\zh-Hant\EntityFramework.resources.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\obj\Release\WEBFORM_Log.csprojResolveAssemblyReference.cache
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\obj\Release\HTTPBASE.dll
+D:\training\mmm\WEBFORM_Log\WEBFORM_Log\obj\Release\HTTPBASE.pdb
